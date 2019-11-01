@@ -1,8 +1,8 @@
 ## 简介
-机器学习工具包（PyTorch/TensorFlow）一般都具有自动微分（Automatic Differentiation）机制，自动微分方法包括手动求解法(Manual Differentiation)、数值微分法(Numerical Differentiation)、符号微法(Symbolic Differentiation)、自动微分法(Automatic Differentiation)，具体的详细介绍可以参见自动微分(Automatic Differentiation)简介，这里主要说一下自动微分法的实现。
+机器学习工具包（PyTorch/TensorFlow）一般都具有自动微分（Automatic Differentiation）机制，微分求解方法包括手动求解法(Manual Differentiation)、数值微分法(Numerical Differentiation)、符号微法(Symbolic Differentiation)、自动微分法(Automatic Differentiation)，具体的详细介绍可以参见自动微分(Automatic Differentiation)简介，这里主要说一下自动微分法的实现。
 
 ## 自动微分法实现
-git上有不少自动微分的实现，如autograd，但AutodiffEngine更适合作为教程，但AutodiffEngine是静态图，整个过程对于初学者还是有点复杂的，主要是不直观，于是动手写了一个简单的动态图的求导，里面的大部分算子的实现还是参照AutodiffEngine的。
+git上有不少自动微分的实现，如[autograd](https://github.com/HIPS/autograd)，这里还有一个特别简单的[AutodiffEngine](https://github.com/mrcat2018/AutodiffEngine)更适合作为教程，但AutodiffEngine是静态图，整个过程对于初学者还是有点复杂的，主要是不直观，于是动手写了一个简单的动态图的求导，里面的大部分算子的实现还是参照AutodiffEngine的。
 
 ### 设计：
 其实主要是2个类，一个类Tensor用于保存数据，另一个类OP支持forward和backward，然后各种具体的运算类，如加减乘除等继承OP，然后实现具体的forward和backward过程
