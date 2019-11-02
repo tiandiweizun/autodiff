@@ -94,9 +94,9 @@ assert np.array_equal(x2.grad, np.ones_like(x2_val))
 ```
 add_with_const和其他运算符参见代码
 
-利用现有的自动求导来训练一个线性回归模型，绝大部分代码来自于AutodiffEngine里面的lr_autodiff.py，其中gen_2d_data方法用于生成数据，每个样例有3维，其中第一维是bias，test_accuracy判断sigmoid（w*x）是否大于0.5来决定分类的类别，并于y进行对比计算准确率。
+利用现有的自动求导来训练一个线性回归模型，绝大部分代码来自于AutodiffEngine里面的lr_autodiff.py，其中gen_2d_data方法用于生成数据，每个样例有3维，其中第一维是bias，test_accuracy判断sigmoid（w*x）是否大于0.5来决定分类的类别，并与y进行对比计算准确率。
 
-我这里仅修改了auto_diff_lr方法，去掉了动态图里面的逻辑，并换成Tensor来封装。
+我这里仅修改了auto_diff_lr方法，去掉了静态图里面的逻辑，并换成Tensor来封装。
 
 下图为训练日志和训练结果
 </br>
