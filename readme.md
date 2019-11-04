@@ -9,7 +9,7 @@ git上有不少自动微分的实现，如[autograd](https://github.com/HIPS/aut
 
 ### 过程：
 分为forward和backward两个过程，forward从前往后计算得到最终的输出，并返回新的tensor(如下图中的v1)，新的tensor保存通过哪些子tensor(v-1)，哪个具体的算子(ln)计算得到的（计算图），backward按照计算图计算梯度，并赋值给对应的子tensor(v-1)
-![Image text](https://github.com/tiandiweizun/autodiff/blob/master/img-folder/%E8%87%AA%E5%8A%A8%E5%BE%AE%E5%88%86%E8%BF%87%E7%A8%8B.jpg)
+![Image text](https://github.com/tiandiweizun/autodiff/blob/master/img-folder/diff-process.jpg)
 
 ### 实现：
 
@@ -100,9 +100,9 @@ add_with_const和其他运算符参见代码
 
 下图为训练日志和训练结果
 </br>
-![Image text](https://github.com/tiandiweizun/autodiff/blob/master/img-folder/%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97%20.jpg)
+![Image text](https://github.com/tiandiweizun/autodiff/blob/master/img-folder/train-log.jpg)
 
-![Image text](https://github.com/tiandiweizun/autodiff/blob/master/img-folder/%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C.jpg)
+![Image text](https://github.com/tiandiweizun/autodiff/blob/master/img-folder/train-result.jpg)
 
 
 
