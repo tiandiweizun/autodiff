@@ -2,6 +2,9 @@ import numpy
 
 
 class Tensor:
+    # 让Tensor又操作支持numpy数组，而不是单个数字，参照https://stackoverflow.com/questions/58408999/how-to-call-rsub-properly-with-a-numpy-array
+    __array_ufunc__ = None
+
     def __init__(self, data, from_tensors=None, op=None, grad=None):
         self.data = data  # 数据
         self.from_tensors = from_tensors  # 是从什么Tensor得到的，保存计算图的历史
@@ -22,7 +25,7 @@ class Tensor:
 
     def __rsub__(self, other):
         # 常数-tensor ，则调用 rsub_with_const
-        return sub.forward([self, other]) if isinstance(other, Tensor) else rsub_with_const.forward([self, other])
+        return rsub_with_const.forward([self, other])
 
     def __mul__(self, other):
         # 先判断other是否是常数，然后再调用
@@ -34,7 +37,7 @@ class Tensor:
 
     def __rtruediv__(self, other):
         # 常数/tensor，则调用 rdiv_with_const
-        return div.forward([self, other]) if isinstance(other, Tensor) else rdiv_with_const.forward([self, other])
+        return rdiv_with_const.forward([self, other])
 
     def __neg__(self):
         # 求负直接使用 0-tensor ，即__rsub__

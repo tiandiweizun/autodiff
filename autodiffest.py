@@ -23,10 +23,23 @@ def test_add_by_const():
 def test_sub_by_const():
     x2_val = 2 * np.ones(3)
     x2 = Tensor(x2_val)
-    y = 3 - x2
-    assert np.array_equal(y.data, 3 - x2_val)
+    y = np.ones(3) - x2
+    assert np.array_equal(y.data, np.ones(3) - x2_val)
     y.backward()
     assert np.array_equal(x2.grad, -np.ones_like(x2_val))
+
+
+def test_sub_two_vars():
+    x1_val = 2 * np.ones(3)
+    x2_val = 3 * np.ones(3)
+    x1 = Tensor(x1_val)
+    x2 = Tensor(x2_val)
+    y = x1 - x2
+
+    assert np.array_equal(y.data, x1_val - x2_val)
+    y.backward()
+    assert np.array_equal(x1.grad, np.ones_like(x1_val))
+    assert np.array_equal(x2.grad, - np.ones_like(x2_val))
 
 
 def test_neg():
